@@ -215,7 +215,10 @@ void Ray::renderWallProjection(Graphics& graphic, Player& player, int col, textu
 			int distanceFromTop = y + (wallStripHeight / 2) - (WINDOW_HEIGHT / 2);
 			int textureOffSetY = distanceFromTop * ((float)texture_dim / wallStripHeight);
 
-			text.render(col * textureOffSetY,y);
+			text.render(texture_dim * textureOffSetY,textureOffSetX); // with the rendering her trying to do the 
+			//[width * y + col]
+
+
 			//color_t texelColor = wallTextures[texNum].texture_buffer[(texture_width * textureOffSetY) + textureOffSetX];
 			//drawPixel(x, y, texelColor);
 
