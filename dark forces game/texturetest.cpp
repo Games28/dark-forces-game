@@ -129,14 +129,18 @@ void texturetest::setAlpha(Uint8 alpha)
 
 void texturetest::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
-    SDL_Rect renderQuad = { x,y,mWidth,mHeight };
-
-    if (clip != NULL)
-    {
-        renderQuad.w = clip->w;
-        renderQuad.h = clip->h;
-    }
-    SDL_RenderCopyEx(Graphics::renderer, mTexture, clip, &renderQuad, angle, center, flip);
+    Uint32* pixels = (Uint32*)mPixels;
+    
+    pixels[x + y];
+   //SDL_Rect renderQuad = { x,y,mWidth,mHeight };
+   //
+   //if (clip != NULL)
+   //{
+   //    renderQuad.w = clip->w;
+   //    renderQuad.h = clip->h;
+   //}
+    SDL_UpdateTexture(mTexture, NULL, pixels, mPitch);
+   //SDL_RenderCopyEx(Graphics::renderer, mTexture, clip, &renderQuad, angle, center, flip);
 }
 
 void texturetest::loadTexture()
