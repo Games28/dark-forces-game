@@ -4,6 +4,7 @@
 
 class Animation;
 #include <SDL.h>
+#include "../Graphics.h"
 #include "TransformComponent.h"
 #include "../TextureManager.h"
 #include "../AssetManager.h"
@@ -20,7 +21,7 @@ private:
 	int animationSpeed;
 	bool isFixed;
 	//std::map<std::string, Animation> animations;
-	//std::string currentAnimationName;
+	std::string currentAnimationName;
 	unsigned int animationIndex = 0;
 
 public:
@@ -79,7 +80,7 @@ public:
 	*/
 	void SetTexture(std::string assetTextureId)
 	{
-		texture = Graphics::assetManager->GetTexture(assetTextureId);
+		texture = Game::assetManager->GetTexture(assetTextureId);
 
 	}
 

@@ -1,6 +1,10 @@
 #include "Game.h"
+#include <string>
 #include "Components/TransformComponent.h"
 #include "Components/SpriteComponent.h"
+
+EntityManager manager;
+AssetManager* Game::assetManager = new AssetManager(&manager);
 
 
 Game::~Game()
@@ -9,9 +13,16 @@ Game::~Game()
 
 void Game::Setup()
 {
+	theTexture.init();
 	player.Init();
-	
+	LoadLevel(0);
 	isGameRunning = graphic.initializeWindow();
+}
+
+void Game::LoadLevel(int levelnumber)
+{
+	assetManager->AddTexture("walltest", std::string("./assets/images/stonewall.png").c_str());
+
 }
 
 void Game::processInput()
@@ -69,7 +80,7 @@ void Game::Update()
 {
 	while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksLastFrame + FRAME_TIME_LENGTH));
 
-
+	theTexture.loadTexture();
 	float deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.0f;
 
 	ticksLastFrame = SDL_GetTicks();
@@ -85,7 +96,8 @@ void Game::Render()
 	graphic.clearColorBuffer(0xFFFF0000);
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
-		rays[i].wallTest(graphic, player, i);
+		//rays[i].wallTest(graphic, player, i);
+		rays[i].renderWallProjection(graphic, player, i, theTexture);
 	}
 	map.renderMap(graphic);
 	player.renderPlayer(graphic);

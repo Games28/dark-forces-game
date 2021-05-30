@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Graphics.h"
+#include <string>
 #include <SDL.h>
 
 class TextureManager
@@ -12,6 +13,12 @@ public:
 	static void Draw(SDL_Texture* texture, SDL_Rect sourceRectangle,
 		SDL_Rect destinationRectangle, SDL_RendererFlip flip);
 
+	static SDL_Texture* testtextureload(const char* fileName);
+	
+
+
+public:
+	
 
 
 

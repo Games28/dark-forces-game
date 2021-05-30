@@ -155,10 +155,12 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="texturetest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\WallComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Components\SpriteComponent.h" />
     <ClInclude Include="Components\TransformComponent.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="texturetest.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

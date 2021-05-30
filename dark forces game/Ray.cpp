@@ -1,5 +1,8 @@
 #include "Ray.h"
 
+SDL_Texture* Ray::gTexture;
+
+
 
 Ray::~Ray()
 {
@@ -173,61 +176,65 @@ void Ray::renderRays(Player& player, Graphics& graphic)
 	);
 }
 
-void Ray::renderWallProjection(Graphics& graphic, Player& player, int& col)
+void Ray::renderWallProjection(Graphics& graphic, Player& player, int col, texturetest & text)
 {
-	/*float prepDistance = rays[x].distance * cos(rays[x].rayAngle - player.rotationAngle);
+	float prepDistance = distance * cos(rayAngle - player.rotationAngle);
 
-	float projectedWallHeight = (TILE_SIZE / prepDistance * Dist_PROJ_PLANE);
+		float projectedWallHeight = (TILE_SIZE / prepDistance * Dist_PROJ_PLANE);
 
-	int wallStripHeight = (int)projectedWallHeight;
-	int wallTopPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
+		int wallStripHeight = (int)projectedWallHeight;
+		int wallTopPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
 
-	int wallBottomPixel = (WINDOW_HEIGHT / 2) + (wallStripHeight / 2);
+		int wallBottomPixel = (WINDOW_HEIGHT / 2) + (wallStripHeight / 2);
 
-	wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
-	wallBottomPixel = wallBottomPixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallBottomPixel;
+		wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
+		wallBottomPixel = wallBottomPixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallBottomPixel;
 
-	for (int y = 0; y < wallTopPixel; y++) {
-		drawPixel(x, y, 0xff444444);
-	}
+		//for (int y = 0; y < wallTopPixel; y++) {
+		//	drawPixel(x, y, 0xff444444);
+		//}
 
-	int textureOffSetX;
-	if (rays[x].wasHitVertical) {
-		textureOffSetX = (int)rays[x].wallHitY % TILE_SIZE;
+		int textureOffSetX;
+		if (wasHitVertical) {
+			textureOffSetX = (int)wallHitY % TILE_SIZE;
 
-	}
-	else {
+		}
+		else {
 
-		textureOffSetX = (int)rays[x].wallHitX % TILE_SIZE;
-	}
-
-	//get correct texture id for map content
-	int texNum = rays[x].wallHitContent - 1;
-
-	int texture_width = wallTextures[texNum].width;
-	int texture_height = wallTextures[texNum].height;
-
-	//render wall from top pixel to bottom pixel
-	for (int y = wallTopPixel; y < wallBottomPixel; y++) {
-
-		int distanceFromTop = y + (wallStripHeight / 2) - (WINDOW_HEIGHT / 2);
-		int textureOffSetY = distanceFromTop * ((float)texture_height / wallStripHeight);
-
-		color_t texelColor = wallTextures[texNum].texture_buffer[(texture_width * textureOffSetY) + textureOffSetX];
-		drawPixel(x, y, texelColor);
-
-		if (rays[x].wasHitVertical)
-		{
-			changeColorIntensity(&texelColor, 0.7);
+			textureOffSetX = (int)wallHitX % TILE_SIZE;
 		}
 
-		drawPixel(x, y, texelColor);
+		//get correct texture id for map content
+		int texNum = wallHitContent - 1;
 
-	}
-	for (int y = 0; y > wallBottomPixel; y++) {
-		drawPixel(x, y, 0xff777777);
-	}
-	*/
+		int texture_dim = 64;
+		int x = col;
+		//render wall from top pixel to bottom pixel
+		for (int y = wallTopPixel; y < wallBottomPixel; y++) {
+
+			int distanceFromTop = y + (wallStripHeight / 2) - (WINDOW_HEIGHT / 2);
+			int textureOffSetY = distanceFromTop * ((float)texture_dim / wallStripHeight);
+
+			text.render(col * textureOffSetY, y);
+			//color_t texelColor = wallTextures[texNum].texture_buffer[(texture_width * textureOffSetY) + textureOffSetX];
+			//drawPixel(x, y, texelColor);
+
+			//if (rays[x].wasHitVertical)
+			//{
+			//	changeColorIntensity(&texelColor, 0.7);
+			//}
+
+			//drawPixel(x, y, texelColor);
+			
+			
+			
+
+		}
+		//for (int y = 0; y > wallBottomPixel; y++) {
+			//drawPixel(x, y, 0xff777777);
+		//}
+		
+	
 }
 
 void Ray::wallTest(Graphics& graphic, Player& player, int& col)
@@ -247,12 +254,16 @@ void Ray::wallTest(Graphics& graphic, Player& player, int& col)
 	// render the wall from wallTopPixel to wallBottomPixel
 	for (int y = wallTopPixel; y < wallBottomPixel; y++) {
 		color_t color = 0xFF20FF00;
-
+		
 		if (wasHitVertical)
 		{
 			graphic.changeColorIntensity(&color, 0.7f);
 		}
 		graphic.drawPixel(col, y, color);
-	}
+		
+	} 
 }
+
+
+
 

@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "../libs/glm/glm.hpp"
 #include "../Game.h"
+#include "Component.h"
 
 class TransformComponent : public Component
 {

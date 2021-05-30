@@ -10,8 +10,12 @@
 #include "Map.h"
 #include "Player.h"
 #include "Ray.h"
+#include "Entity.h"
+#include "EntityManager.h"
 #include "Components/Component.h"
+//#include "texturetest.h"
 
+class AssetManager;
 
 class Game
 {
@@ -19,6 +23,8 @@ public:
 	Game() = default;
 	~Game();
 	void Setup();
+	static AssetManager* assetManager;
+	void LoadLevel(int levelnumber);
 	void processInput();
 	void Update();
 	void Render();
@@ -30,5 +36,6 @@ private:
 	Map map;
 	Player player;
 	Ray rays[NUM_RAYS];
+	texturetest theTexture;
 };
 #endif // !GAME_H

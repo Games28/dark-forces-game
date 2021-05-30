@@ -4,16 +4,18 @@
 #include <SDL.h>
 #include <iostream>
 #include "Defs.h"
-#include "AssetManager.h"
-#include "EntityManager.h"
+
+
 
 
 class Graphics
 {
 public:
 	Graphics() = default;
+	
 	static SDL_Renderer* renderer;
-	static AssetManager* assetManager;
+	static SDL_Window* window;
+	static SDL_Surface* surface;
 	bool initializeWindow();
 	void destroyWindow();
 	void clearColorBuffer(color_t color);

@@ -12,11 +12,14 @@ private:
 	AssetManager() = default;
 	EntityManager* manager;
 	std::map<std::string, SDL_Texture*> textures;
+	std::map<std::string, SDL_Texture*> testtextures;
 public:
 	AssetManager(EntityManager* manager);
 	~AssetManager();
 	void ClearData();
 	void AddTexture(std::string textureId, const char* filePath);
+	void testaddTexture(std::string Id, const char* filePath);
+	SDL_Texture* testGetTexture(std::string textureid);
 	SDL_Texture* GetTexture(std::string textureId);
 };
 

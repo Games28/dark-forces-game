@@ -1,9 +1,10 @@
 #include "Graphics.h"
 
-static SDL_Window* window = NULL;
+
+ SDL_Window* Graphics::window = NULL;
+
 SDL_Renderer* Graphics::renderer;
-EntityManager manager;
-AssetManager* Graphics::assetManager = new AssetManager(&manager);
+SDL_Surface* Graphics::surface;
 static color_t* colorBuffer = NULL;
 static SDL_Texture* colorBufferTexture;
 
